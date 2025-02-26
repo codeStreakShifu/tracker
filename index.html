@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance Tracker</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f4f4f9;
+      padding: 20px;
+    }
+    .tracker-container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .btn {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tracker-container">
+    <h2>Attendance Tracker</h2>
+    <label for="date">Select Date:</label>
+    <input type="date" id="date" class="form-control mb-3" />
+
+    <button class="btn btn-success" onclick="stamp('stampIn')">Stamp In</button>
+    <button class="btn btn-warning" onclick="stamp('startBreak')">Start Break</button>
+    <button class="btn btn-secondary" onclick="stamp('stopBreak')">Stop Break</button>
+    <button class="btn btn-info" onclick="stamp('startLunch')">Start Lunch</button>
+    <button class="btn btn-primary" onclick="stamp('stopLunch')">Stop Lunch</button>
+    <button class="btn btn-danger" onclick="stamp('stampOut')">Stamp Out</button>
+    <br />
+    <button class="btn btn-dark mt-3" onclick="exportCSV()">Export CSV</button>
+    <button class="btn btn-outline-primary mt-3" onclick="viewReport()">View Report</button>
+
+    <h4 class="mt-4">Activity Log (Local)</h4>
+    <ul id="log" class="list-group"></ul>
+  </div>
+
+  <script>
+    function stamp(action) {
+      const date = document.getElementById("date").value;
+      if (!date) {
+        alert("Please select a date");
+        return;
+      }
+      const time = new Date().toLocaleTimeString();
+      // Update the local activity log
+      const log = document.getElementById("log");
+      const entry = document.createElement("li");
+      entry.className = "list-group-item";
+      entry.textContent = `${date} - ${action.replace(/([A-Z])/g, " $1")} at ${time}`;
+      log.appendChild(entry);
+
+      // Send the stamp data to the backend
+      fetch("stamp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date: date, action: action, time: time }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+    }
+
+    function exportCSV() {
+      window.location.href = "export.php";
+    }
+
+    function viewReport() {
+      window.location.href = "report.php";
+    }
+  </script>
+</body>
+</html>
