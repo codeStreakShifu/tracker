@@ -1,8 +1,11 @@
 <?php
-// report.php
+// filepath: /C:/Users/Hp/Documents/GitHub/tracker/report.php
 require_once 'db.php';
 
-$stmt = $pdo->query("SELECT date, action, time, created_at FROM attendance ORDER BY created_at DESC");
+$userId = $_GET['userId']; // Get user ID from query parameter
+
+$stmt = $pdo->prepare("SELECT date, action, time, created_at FROM attendance WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->execute([$userId]);
 $records = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -59,7 +62,7 @@ $records = $stmt->fetchAll();
         <?php endif; ?>
       </tbody>
     </table>
-    <a href="index.html" class="btn btn-primary">Back to Tracker</a>
+    <a href="tracker.html" class="btn btn-primary">Back to Tracker</a>
   </div>
 </body>
 </html>

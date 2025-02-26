@@ -33,17 +33,17 @@
     <label for="date">Select Date:</label>
     <input type="date" id="date" class="form-control mb-3" />
 
-    <button class="btn btn-success" onclick="stamp('stampIn')">Stamp In</button>
+    <button class="btn btn-success" onclick="stamp('In')">Stamp In</button>
     <button class="btn btn-warning" onclick="stamp('startBreak')">Start Break</button>
     <button class="btn btn-secondary" onclick="stamp('stopBreak')">Stop Break</button>
     <button class="btn btn-info" onclick="stamp('startLunch')">Start Lunch</button>
     <button class="btn btn-primary" onclick="stamp('stopLunch')">Stop Lunch</button>
-    <button class="btn btn-danger" onclick="stamp('stampOut')">Stamp Out</button>
+    <button class="btn btn-danger" onclick="stamp('Out')">Stamp Out</button>
     <br />
     <button class="btn btn-dark mt-3" onclick="exportCSV()">Export CSV</button>
     <button class="btn btn-outline-primary mt-3" onclick="viewReport()">View Report</button>
 
-    <h4 class="mt-4">Activity Log (Local)</h4>
+    <h4 class="mt-4">Activity Log</h4>
     <ul id="log" class="list-group"></ul>
   </div>
 
@@ -55,6 +55,11 @@
         return;
       }
       const time = new Date().toLocaleTimeString();
+      const userId = localStorage.getItem("userId"); // Retrieve user ID from local storage
+      if (!userId) {
+        alert("User not logged in");
+        return;
+      }
       // Update the local activity log
       const log = document.getElementById("log");
       const entry = document.createElement("li");
@@ -66,7 +71,7 @@
       fetch("stamp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ date: date, action: action, time: time }),
+        body: JSON.stringify({ date: date, action: action, time: time, userId: userId }),
       })
         .then((response) => response.json())
         .then((data) => console.log(data))
@@ -74,11 +79,21 @@
     }
 
     function exportCSV() {
-      window.location.href = "export.php";
+      const userId = localStorage.getItem("userId"); // Retrieve user ID from local storage
+      if (!userId) {
+        alert("User not logged in");
+        return;
+      }
+      window.location.href = `export.php?userId=${userId}`;
     }
 
     function viewReport() {
-      window.location.href = "report.php";
+      const userId = localStorage.getItem("userId"); // Retrieve user ID from local storage
+      if (!userId) {
+        alert("User not logged in");
+        return;
+      }
+      window.location.href = `report.php?userId=${userId}`;
     }
   </script>
 </body>

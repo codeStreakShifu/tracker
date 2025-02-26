@@ -1,8 +1,11 @@
 <?php
-// export.php
+// filepath: /C:/Users/Hp/Documents/GitHub/tracker/export.php
 require_once 'db.php';
 
-$stmt = $pdo->query("SELECT date, action, time, created_at FROM attendance ORDER BY created_at DESC");
+$userId = $_GET['userId']; // Get user ID from query parameter
+
+$stmt = $pdo->prepare("SELECT date, action, time, created_at FROM attendance WHERE user_id = ? ORDER BY created_at DESC");
+$stmt->execute([$userId]);
 $records = $stmt->fetchAll();
 
 header('Content-Type: text/csv; charset=utf-8');

@@ -11,14 +11,17 @@ ini_set('error_log', 'error_log.txt'); // Log errors to a file named error_log.t
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!$data || !isset($data['date'], $data['action'], $data['time'])) {
+if (!$data || !isset($data['date'], $data['action'], $data['time'], $data['userId'])) {
     echo json_encode(["status" => "error", "message" => "Invalid data"]);
     exit;
 }
 
+// Convert time to the correct format
+$time = date("H:i:s", strtotime($data['time']));
+
 try {
-    $stmt = $pdo->prepare("INSERT INTO attendance (date, action, time) VALUES (?, ?, ?)");
-    $stmt->execute([$data['date'], $data['action'], $data['time']]);
+    $stmt = $pdo->prepare("INSERT INTO attendance (user_id, date, action, time) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$data['userId'], $data['date'], $data['action'], $time]);
     echo json_encode(["status" => "success", "message" => "Attendance recorded"]);
 } catch (\PDOException $e) {
     error_log("Database error: " . $e->getMessage());

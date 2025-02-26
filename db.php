@@ -17,8 +17,6 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // Return a valid JSON error response if the connection fails.
-    echo json_encode(["status" => "error", "message" => "Database connection failed: " . $e->getMessage()]);
-    exit;
+    die("Database connection failed: " . $e->getMessage());
 }
 ?>

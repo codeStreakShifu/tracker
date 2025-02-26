@@ -1,0 +1,17 @@
+[26-Feb-2025 23:45:39 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:45:39 AM' for column 'time' at row 1
+[26-Feb-2025 23:45:52 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:45:52 AM' for column 'time' at row 1
+[26-Feb-2025 23:45:53 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:45:52 AM' for column 'time' at row 1
+[26-Feb-2025 23:45:53 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:45:53 AM' for column 'time' at row 1
+[26-Feb-2025 23:45:53 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:45:53 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:13 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:13 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:14 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:14 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:15 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:15 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:15 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:15 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:16 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:16 AM' for column 'time' at row 1
+[26-Feb-2025 23:47:17 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:47:17 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:05 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:05 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:06 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:06 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:07 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:07 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:07 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:07 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:08 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:08 AM' for column 'time' at row 1
+[26-Feb-2025 23:50:08 Europe/Berlin] Database error: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect time value: '6:50:08 AM' for column 'time' at row 1
