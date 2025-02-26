@@ -21,7 +21,7 @@ try {
     $stmt->execute([$data['date'], $data['action'], $data['time']]);
     echo json_encode(["status" => "success", "message" => "Attendance recorded"]);
 } catch (\PDOException $e) {
-    error_log("Database error: " . $e->getMessage()); // Log the error message
+    error_log("Database error: " . $e->getMessage());
     echo json_encode(["status" => "error", "message" => "Database error: " . $e->getMessage()]);
 }
 ?>

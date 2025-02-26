@@ -5,7 +5,7 @@ $db   = 'attendance_tracker'; // your database name
 $user = 'root';               // your database username
 $pass = 'admin';              // your database password
 $charset = 'utf8mb4';
-$port = 3307;                 // your MySQL server port
+$port = 3306;                 // your MySQL server port
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 $options = [
@@ -17,6 +17,8 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    // Return a valid JSON error response if the connection fails.
+    echo json_encode(["status" => "error", "message" => "Database connection failed: " . $e->getMessage()]);
+    exit;
 }
 ?>
