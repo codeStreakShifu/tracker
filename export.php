@@ -1,23 +1,37 @@
 <?php
-// filepath: /C:/Users/Hp/Documents/GitHub/tracker/export.php
-require_once 'db.php';
+require 'db.php'; // Ensure database connection
 
-$userId = $_GET['userId']; // Get user ID from query parameter
-
-$stmt = $pdo->prepare("SELECT date, action, time, created_at FROM attendance WHERE user_id = ? ORDER BY created_at DESC");
-$stmt->execute([$userId]);
-$records = $stmt->fetchAll();
-
-header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename=attendance.csv');
-
-$output = fopen('php://output', 'w');
-fputcsv($output, ['Date', 'Action', 'Time', 'Recorded At']);
-
-foreach ($records as $record) {
-    fputcsv($output, $record);
+if (!isset($_GET['userId'])) {
+    die("Missing user ID");
 }
 
-fclose($output);
-exit;
+$user_id_number = htmlspecialchars($_GET['userId']);
+
+try {
+    $stmt = $pdo->prepare("SELECT date, action, time FROM attendance WHERE user_id_number = :user_id_number ORDER BY date DESC");
+    $stmt->bindParam(':user_id_number', $user_id_number);
+    $stmt->execute();
+
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$records) {
+        die("No records found for this user.");
+    }
+
+    // Output CSV headers
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=attendance_report.csv');
+
+    $output = fopen('php://output', 'w');
+    fputcsv($output, array('Date', 'Action', 'Time'));
+
+    foreach ($records as $row) {
+        fputcsv($output, $row);
+    }
+
+    fclose($output);
+
+} catch (PDOException $e) {
+    die("Database error: " . $e->getMessage());
+}
 ?>
