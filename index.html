@@ -26,19 +26,21 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <div class="mb-3">
-        <label for="idNumber" class="form-label">ID Number</label>
-        <input type="text" class="form-control" id="idNumber" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <button class="btn btn-link" onclick="showForgotPassword()">Forgot Password?</button>
+    <h2>Employee Login</h2>
+    <div class="screen">
+      <form id="loginForm">
+        <div class="mb-3">
+          <label for="idNumber" class="form-label">ID Number</label>
+          <input type="text" class="form-control" id="idNumber" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <button class="btn btn-link" onclick="showForgotPassword()">Forgot Password?</button>
+    </div>
   </div>
 
   <div class="login-container" id="forgotPasswordContainer" style="display: none;">
